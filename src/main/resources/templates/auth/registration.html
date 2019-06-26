@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{layouts/main}">
+<head>
+<title>Mixture Classification</title>
+</head>
+<body>
+
+	<div layout:fragment="content">
+	<h3 th:if="${registerUser == 'alreadyExists'}" style="color: red">This email address has already been registered</h3>
+	<h3 th:if="${registerUser == 'passWordCheckIsFalse'}" style="color: red">The two given passwords do not match</h3>
+		<form name="registration" th:action="@{/reg}" th:object="${user}" method="post" class="form-signin">
+			<h2 class="form-signin-heading">Registration</h2>
+			<label for="username" class="sr-only">E-mail</label> 
+			    <input type="text" id="username" name="username" th:field="*{email}" class="form-control" placeholder="E-mail" required="true" /> 
+			    <label for="username" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></label>
+			<label for="firstName" class="sr-only">First name</label> 
+			    <input type="text" id="firstName" name="firstName" th:field="*{firstName}" class="form-control" placeholder="First name" required="true" />
+			<label for="lastName" class="sr-only">Last name</label> 
+			    <input type="text" id="lastName" name="lastName" th:field="*{lastName}" class="form-control" placeholder="Last name" required="true" />
+			<label for="password" class="sr-only">Password</label> 
+			    <input type="password" id="password" name="password" th:field="*{password}" class="form-control" placeholder="Password" required="true" />
+			<label for="passwordCheck" class="sr-only">Password again</label> 
+			    <input type="password" id="passwordCheck" name="passwordCheck" th:field="*{passwordCheck}" class="form-control" placeholder="Password again" required="true" />
+			<button class="btn" type="submit" value="Registration">Registration</button>
+		</form>
+	</div>
+
+</body>
+</html>

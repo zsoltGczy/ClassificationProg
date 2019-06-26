@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{layouts/main}"><head>
+</head>
+<body>
+	<div layout:fragment="content">
+		<article>
+			<header>
+				<h1 th:text="${error}">This is the error</h1>
+			</header>
+
+			<section>
+				<p th:text="${message}">This is the message</p>
+				<p th:text="${path}">This is the message</p>
+				<p th:text="${status}">This is the message</p>
+				<p th:text="${timestamp}">This is the message</p>
+			</section>
+		</article>
+	</div>
+</body>
+</html>

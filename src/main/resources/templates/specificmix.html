@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{layouts/main}">
+<head>
+</head>
+<body>
+
+	<div layout:fragment="content">
+
+		<h1 th:text="${mixture.mixtureName}">Name</h1>
+	<br><br>
+		<table style="width: 100%">
+			<tr>
+				<th>Ph</th>
+				<th>Kinematic viscosity</th>
+				<th>Dynamic viscosity</th>
+				<th>Density</th>
+				<th>Physical state</th>
+				<th>Total conc. of ingredients <br> with unknown acute
+					toxicity
+				</th>
+				<th>Update mixture</th>
+				<th>Components of mixture</th>
+				<th>Classification of the mixture</th>
+			</tr>
+			<tr>
+				<td th:text="${mixture.pH}">Ph</td>
+				<td th:text="${mixture.kinematicViscosity}">Kinematic viscosity</td>
+				<td th:text="${mixture.dynamicViscosity}">Dynamic viscosity</td>
+				<td th:text="${mixture.density}">Density</td>
+				<td th:text="${mixture.physicalState}">Physical state</td>
+				<td th:text="${mixture.unknownAcuteToxValues}">Unknown acute tox. values</td>
+				<td><a class="inner_button" href="components.html"
+					th:href="@{|/${mixture.mixtureId}/updatemixture|}">Update</a></td>
+				<td><a class="inner_button" href="components.html"
+					th:href="@{|/${mixture.mixtureId}/components|}">View</a></td>
+				<td><a class="inner_button" 
+					th:href="@{|/${mixture.mixtureId}/classmixture|}">View</a></td>
+			</tr>
+		</table>
+
+		</div>
+</body>
+</html>

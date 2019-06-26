@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{layouts/main}">
+<head>
+<title>Mixture Classification</title>
+</head>
+<body>
+
+	<div layout:fragment="content">
+
+	<h3 th:if="${activation == 'noresult'}" style="color: red">An error occurred during activation</h3>
+		<form name="login" th:action="@{/login}" method="post"
+			class="form-signin">
+			<h2 class="form-signin-heading">Please sign in</h2>
+			<div id="err" th:if="${param.error}" class="alert alert-danger">Wrong
+				name or password</div>
+			<div th:if="${param.logout}" class="alert alert-success">You've
+				been logged out successfully</div>
+			<label for="username" class="sr-only">E-mail</label> <input
+				type="text" id="username" name="username" class="form-control"
+				placeholder="E-mail" required="true" /> <label for="password"
+				class="sr-only">Password</label> <input type="password"
+				id="password" name="password" class="form-control"
+				placeholder="Password" required="true" />
+			<button class="btn" type="submit" value="Sign In">Log in</button>
+		</form>
+		&nbsp;&nbsp;&nbsp;
+		<a class="button" href="/registration">Registration</a>
+	</div>
+
+</body>
+</html>

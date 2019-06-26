@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{layouts/main}">
+<head>
+
+</head>
+<body>
+
+	<div layout:fragment="content">
+<!-- th:text="${specificConcLimit.mixtureComponent.componentName} + ' - Specific concentration limits'" -->
+		<h1 th:text="${mixtureComponent.componentName} + ' - Specific concentration limits'">Name -
+			Specific concentration limits</h1>
+
+
+		<br><br>
+
+		<h3 th:if="${#lists.isEmpty(specificConcLimits)}">The component has not any specific concentration limits</h3>
+		
+		<table th:if="${not #lists.isEmpty(specificConcLimits)}" style="width: 100%">
+			<tr>
+				<th>Name</th>
+				<th>Value</th>
+				<th>Update specific <br> concentration limits</th>
+				<th>Delete specific <br> concentration limits</th>
+			</tr>
+			<tr th:each="spec : ${specificConcLimits}">
+				<td th:text="${spec.name}">Name</td>
+				<td th:text="${spec.value}">Value</td>
+				<td><a class="inner_button"
+					th:href="@{|/${mixture.mixtureId}/components/${spec.mixtureComponent.componentId}/spec/${spec.specId}/updatespec|}">Update</a></td>
+				<td><a class="inner_button"
+					th:href="@{|/${mixture.mixtureId}/components/${spec.mixtureComponent.componentId}/spec/${spec.specId}/deletespec|}">Delete</a></td>
+			</tr>
+		</table>
+		<br> <a class="button" href="components.html"
+			th:href="@{|/${mixture.mixtureId}/components|}">Back</a>
+
+		</div>
+</body>
+</html>

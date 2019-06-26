@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{layouts/main}">
+<head>
+</head>
+<body>
+
+	<div layout:fragment="content">
+
+		<h1
+			th:text="${specificConcLimit.mixtureComponent.componentName} + ' - Specific concentration limits'">Specific
+			concentration limits</h1>
+		<h2>Update</h2>
+
+		<form class="form-signin" name="updateSpecificConclimits" th:action="@{/updatespecs}"
+			th:object="${specificConcLimit}" method="post">
+			
+			<label style="color: red"
+				th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></label>
+				<br th:if="${#fields.hasErrors('name')}">
+			Name: <br> <select class="form-control" id="specConcLimits" th:field="*{name}">
+				<option value="">Please select...</option>
+				<option th:each="spec : ${selectableSpec}" id="name" name="name"
+					th:text="${spec}" th:value="${spec}"></option>
+			</select>
+			<label style="color: red"
+				th:if="${#fields.hasErrors('value')}" th:errors="*{value}"></label>
+				<br th:if="${#fields.hasErrors('value')}">
+			Value:<br> <input class="form-control" type="number" step="any" id="value"
+				name="value" th:field="*{value}"><br><br>
+			
+			<input type="hidden" id="specificConcLimit.id"
+				name="specificConcLimit.id" th:field="*{specId}"><br> <input
+				type="hidden" id="specificConcLimit.mixtureComponent"
+				name="specificConcLimit.mixtureComponent"
+				th:field="*{mixtureComponent}"><br> <input class="submit_button"
+				type="submit" name="Add" value="update"> <input class="submit_button"
+				type="submit" name="Cancel" value="cancel">
+		</form>
+
+		</div>
+</body>
+</html>

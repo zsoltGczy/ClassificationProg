@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{layouts/main}"><head>
+</head>
+<body>
+
+	<div layout:fragment="content">
+
+		<h1 th:text="${mixture.mixtureName} + ' - components'">Name -
+			components</h1>
+			
+		<br><br>
+
+		<h3 th:if="${#lists.isEmpty(components)}">Mixture has no added Components</h3>
+		<table th:if="${not #lists.isEmpty(components)}" style="width: 100%">
+			<tr>
+				<th>Name</th>
+				<th>CAS-number</th>
+				<th>EC-number</th>
+				<th>Concentration</th>
+				<th>Hazards</th>
+				<th>Spec</th>
+				<th>Add specific concentration limits</th>
+				<th>Edit specific concentration limits</th>
+				<th>Update component</th>
+				<th>Delete component</th>
+			</tr>
+			<tr th:each="component : ${components}">
+				<td th:text="${component.componentName}">Name</td>
+				<td th:text="${component.cas}">CAS-number</td>
+				<td th:text="${component.ec}">EC-number</td>
+				<td th:text="${component.concentration}">Concentration</td>
+				<td>
+					<div th:each="hazards:${component.hazards}">
+						<span th:text="${hazards}"></span>
+					</div>
+				</td>
+				<td>
+					<div th:each="specs:${component.specificConcLimits}">
+						<span th:text="${specs.name} + ' : ' ?: ''"></span> <span
+							th:text="${specs.value} ?: ''"></span>
+					</div>
+				</td>
+				<td><a class="inner_button"
+					th:href="@{|/${mixture.mixtureId}/components/${component.componentId}/spec|}">Add</a> </td>
+				<td><a class="inner_button"
+					th:href="@{|/${mixture.mixtureId}/components/${component.componentId}/specs|}">Edit
+						spec.</a></td>
+				<td><a class="inner_button"
+					th:href="@{|/${mixture.mixtureId}/components/${component.componentId}/updatecomp|}">Update</a></td>
+				<td><a class="inner_button"
+					th:href="@{|/${mixture.mixtureId}/components/${component.componentId}/deletecomponent|}">Delete</a></td>
+			</tr>
+		</table>
+		<br><a class="button"
+			th:href="@{|/${mixture.mixtureId}/addcomponents|}">Add new
+			components</a> 
+			<a class="button" href="specificmix.html"
+			th:href="@{|/${mixture.mixtureId}|}">Back</a>
+
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{layouts/main}"><head>
+</head>
+<body>
+
+	<div layout:fragment="content">
+
+		<h1 th:text="${mixture.mixtureName}">Name</h1>
+	<br><br>
+		<h3 th:if="${#lists.isEmpty(mixture.hazardsOfMixture)}">No available classification for mixture</h3>
+		
+		<table th:if="${not #lists.isEmpty(mixture.hazardsOfMixture)}" style="width: 100%">
+			<tr>
+				<th>Name</th>
+				<th>Pictogram</th>
+				<th>Signal word</th>
+				<th>Hazard statements</th>
+				<th>Precautionary statements</th>
+			</tr>
+			<tr th:each="haz : ${mixture.hazardsOfMixture}">
+				<td th:text="${haz.name}">Name</td>
+				<td th:text="${haz.pictogram}">Pictogram</td>
+				<td th:text="${haz.signalWord}">Signal word</td>
+				<td th:text="${haz.hazardStatement}">Hazard statements</td>
+				<td th:text="${haz.precautionaryStatement}">Precautionary statements</td>
+			</tr>
+		</table>
+		<br> <br> <a class="button" href="components.html"
+			th:href="@{|/${mixture.mixtureId}|}">Back</a> 
+			
+	</div>
+
+</body>
+</html>

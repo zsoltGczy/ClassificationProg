@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{layouts/main}"><head>
+</head>
+<body>
+
+	<div layout:fragment="content">
+
+		<article>
+			<header>
+				<h3>An exception is occured:</h3>
+			</header>
+			<p th:text="${exceptionCause}">Cause of the exception</p>
+			<p th:text="${exceptionMessage}">Message of the exception</p>
+		</article>
+
+	</div>
+
+</body>
+</html>

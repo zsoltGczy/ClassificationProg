@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{layouts/main}">
+<head>
+</head>
+<body>
+	
+	<div layout:fragment="content">
+
+	<h3 th:if="${#lists.isEmpty(allmixtures)}">No added mixtures</h3>
+		<table th:if="${not #lists.isEmpty(allmixtures)}" style="width: 100%">
+			<tr>
+				<th>Name</th>
+				<th>Edit mixture's <br> properties</th>
+				<th>Delete mixture</th>
+			</tr>
+			<tr th:each="mixture : ${allmixtures}">
+				<td th:text="${mixture.mixtureName}">Mixture Name</td>
+				<td><a class="inner_button"
+					th:href="@{/{mixtureId}(mixtureId=${mixture.mixtureId})}">Edit</a></td>
+				<td><a class="inner_button" th:href="@{|/${mixture.mixtureId}/deletemixture|}">Delete</a></td>
+			</tr>
+		</table>
+		<br>
+		<br> <a class="button" th:href="@{/addmix}">Add new mixture</a>
+	
+	</div>
+
+</body>
+</html>

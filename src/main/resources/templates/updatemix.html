@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{layouts/main}">
+<head>
+</head>
+<body>
+
+	<div layout:fragment="content">
+
+		<h1>Update mixture</h1>
+	<br><br>
+		<form class="form-signin" name="updatem" th:action="@{/updatem}" th:object="${mixture}"
+			method="post">
+			
+			<label style="color: red"
+				th:if="${#fields.hasErrors('mixtureName')}"
+				th:errors="*{mixtureName}"></label>
+			<br th:if="${#fields.hasErrors('mixtureName')}">
+			Name:<br> <input class="form-control" type="text" id="mixtureName" name="mixtureName"
+				th:field="*{mixtureName}"><br> 
+			<label style="color: red" th:if="${#fields.hasErrors('pH')}" th:errors="*{pH}"></label>
+			<br th:if="${#fields.hasErrors('pH')}">
+			Ph:<br> <input class="form-control"
+				type="number" step="any" id="pH" name="pH" th:field="*{pH}">
+				<br>
+			Kinematic viscosity:<br> <input class="form-control" type="number" step="any"
+				id="kinematicViscosity" name="kinematicViscosity"
+				th:field="*{kinematicViscosity}"><br> 
+			Dynamic viscosity:<br> <input class="form-control" type="number" step="any"
+				id="dynamicViscosity" name="dynamicViscosity"
+				th:field="*{dynamicViscosity}"><br> 
+			Density:<br> <input class="form-control"
+				type="number" step="any" id="density" name="density"
+				th:field="*{density}"><br> 
+			<label style="color: red" th:if="${#fields.hasErrors('physicalState')}"
+				th:errors="*{physicalState}"></label>
+			<br th:if="${#fields.hasErrors('physicalState')}">
+			Physical state:<br> <select class="form-control"
+				id="physicalState" th:field="*{physicalState}">
+				<option value="">Please select...</option>
+				<option th:each="phys : ${selectablePhysicalSt}" id="physicalState"
+					name="physicalState" th:text="${phys}" th:value="${phys}"></option>
+				</select> <br> 
+			Total conc. of ingredients with unknown acute toxicity:<br> <input 
+				class="form-control" type="number" step="any" id="unknownAcuteToxValues"
+				name="unknownAcuteToxValues" th:field="*{unknownAcuteToxValues}"><br>
+
+			 <input type="hidden" id="mixtureId" name="mixtureId" th:field="*{mixtureId}">
+			<br>
+			<input class="submit_button" type="submit" name="Add" value="update"> <input
+				class="submit_button" type="submit" name="Cancel" value="cancel">
+		</form>
+	</div>
+
+</body>
+</html>
