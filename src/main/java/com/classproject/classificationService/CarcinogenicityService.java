@@ -1,21 +1,11 @@
 package com.classproject.classificationService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.classproject.domain.Mixture;
 
 @Service
 public class CarcinogenicityService {
-	
-	private GeneralFunctions generalFunctions;
-		
-	@Autowired
-	public void setGeneralFunctions(GeneralFunctions generalFunctions) {
-		this.generalFunctions = generalFunctions;
-	}
-	
-	
 	
 
 
@@ -66,19 +56,19 @@ public class CarcinogenicityService {
 	
 	
 	private void addCarcinogenicityHazards2(Mixture mixture) {
-		generalFunctions.addNewHazard(mixture, nameCatCarcinogenicity2, pictogramCatCarcinogenicity1A1B2, signalWordCatCarcinogenicity2,
+		GeneralFunctions.addNewHazard(mixture, nameCatCarcinogenicity2, pictogramCatCarcinogenicity1A1B2, signalWordCatCarcinogenicity2,
 				hazardStatementCatCarcinogenicity2, precautStatementCatCarcinogenicity1A1B2);
 	}
 	
 	
 	private void addCarcinogenicityHazards1A1B(Mixture mixture, String name) {
-		generalFunctions.addNewHazard(mixture, name, pictogramCatCarcinogenicity1A1B2, signalWordCatCarcinogenicity1A1B,
+		GeneralFunctions.addNewHazard(mixture, name, pictogramCatCarcinogenicity1A1B2, signalWordCatCarcinogenicity1A1B,
 				hazardStatementCatCarcinogenicity1A1B, precautStatementCatCarcinogenicity1A1B2);
 	}
 	
 	
 	private boolean carcinogenicity(Mixture mixture, String hazard, double concLimit) {
-		return generalFunctions.nonAdditiveHazardClassCalculation(mixture, hazard, concLimit, "");
+		return GeneralFunctions.nonAdditiveHazardClassCalculation(mixture, hazard, concLimit, "");
 	}
 	
 		

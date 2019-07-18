@@ -1,6 +1,5 @@
 package com.classproject.classificationService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.classproject.domain.Mixture;
@@ -9,14 +8,6 @@ import com.classproject.domain.MixtureComponent;
 @Service
 public class SkinCorrIrritService {
 	
-	private GeneralFunctions generalFunctions;
-		
-	@Autowired
-	public void setGeneralFunctions(GeneralFunctions generalFunctions) {
-		this.generalFunctions = generalFunctions;
-	}
-	
-
 	protected final double cutOff = 1.0;
 	private double sumOfRelevantConcentrations;
 	
@@ -66,22 +57,22 @@ public class SkinCorrIrritService {
 		}
 		
 		if (cat1A >= 1) {
-			generalFunctions.addNewHazard(mixture, nameCat1A, pictogramCat1ABC, signalWordCat1ABC,
+			GeneralFunctions.addNewHazard(mixture, nameCat1A, pictogramCat1ABC, signalWordCat1ABC,
 					hazardStatementCat1BC, precautStatementCat1ABC);
-		} else if (generalFunctions.specialCase(mixture, skinCorr1A, skinCorr1B) || cat1A + cat1B >= 1) {
-			generalFunctions.addNewHazard(mixture, nameCat1B, pictogramCat1ABC, signalWordCat1ABC,
+		} else if (GeneralFunctions.specialCase(mixture, skinCorr1A, skinCorr1B) || cat1A + cat1B >= 1) {
+			GeneralFunctions.addNewHazard(mixture, nameCat1B, pictogramCat1ABC, signalWordCat1ABC,
 					hazardStatementCat1BC, precautStatementCat1ABC);
 		} else if (cat1A + cat1B + cat1C >= 1) {
-			generalFunctions.addNewHazard(mixture, nameCat1C, pictogramCat1ABC, signalWordCat1ABC,
+			GeneralFunctions.addNewHazard(mixture, nameCat1C, pictogramCat1ABC, signalWordCat1ABC,
 					hazardStatementCat1BC, precautStatementCat1ABC);
 		} else if (cat1A + cat1B + cat1C + cat1 >= 1) {
-			generalFunctions.addNewHazard(mixture, nameCat1, pictogramCat1ABC, signalWordCat1ABC, hazardStatementCat1BC,
+			GeneralFunctions.addNewHazard(mixture, nameCat1, pictogramCat1ABC, signalWordCat1ABC, hazardStatementCat1BC,
 					precautStatementCat1ABC);
 		} else if (pH != (null) && (pH <= 2 || pH >= 11.5)) {
-				generalFunctions.addNewHazard(mixture, nameCat1, pictogramCat1ABC, signalWordCat1ABC,
+				GeneralFunctions.addNewHazard(mixture, nameCat1, pictogramCat1ABC, signalWordCat1ABC,
 						hazardStatementCat1BC, precautStatementCat1ABC);
 		} else if (catIrrit >= 1) {
-			generalFunctions.addNewHazard(mixture, nameCat2, pictogramCat2, signalWordCat2, hazardStatementCat2,
+			GeneralFunctions.addNewHazard(mixture, nameCat2, pictogramCat2, signalWordCat2, hazardStatementCat2,
 					precautStatementCat2);
 		}
 	}
@@ -108,8 +99,8 @@ public class SkinCorrIrritService {
 	private double calculateSkinIrrit(MixtureComponent comp, String hazard, String specificName, double divisor) {
 		
 		sumOfRelevantConcentrations = 0.0;
-		if (generalFunctions.componentHasHazard(comp, hazard)) {
-			sumOfRelevantConcentrations += generalFunctions.additiveHazardClassCalculation(comp, specificName, divisor, cutOff);;
+		if (GeneralFunctions.componentHasHazard(comp, hazard)) {
+			sumOfRelevantConcentrations += GeneralFunctions.additiveHazardClassCalculation(comp, specificName, divisor, cutOff);;
 		}
 		return sumOfRelevantConcentrations;
 	}
@@ -117,7 +108,7 @@ public class SkinCorrIrritService {
 	private double calculateSkinCorr(MixtureComponent comp, String hazardAndSpecificName) {
 		
 		sumOfRelevantConcentrations = 0.0;
-		if (generalFunctions.componentHasHazard(comp, hazardAndSpecificName)) {
+		if (GeneralFunctions.componentHasHazard(comp, hazardAndSpecificName)) {
 			sumOfRelevantConcentrations += skinCorr(comp, hazardAndSpecificName);
 		}
 		return sumOfRelevantConcentrations;
@@ -125,7 +116,7 @@ public class SkinCorrIrritService {
 	
 	
 	private double skinCorr(MixtureComponent comp, String specificName) {
-		return generalFunctions.additiveHazardClassCalculation(comp, specificName, 5, cutOff);
+		return GeneralFunctions.additiveHazardClassCalculation(comp, specificName, 5, cutOff);
 	}
 		
 	

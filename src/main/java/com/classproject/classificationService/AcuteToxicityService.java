@@ -11,15 +11,10 @@ import com.classproject.service.MixtureComponentService;
 public class AcuteToxicityService {
 
 	private MixtureComponentService componentService;
-	private GeneralFunctions generalFunctions;
 	
 	@Autowired
 	public void setComponentService(MixtureComponentService componentService) {
 		this.componentService = componentService;
-	}
-	@Autowired
-	public void setGeneralFunctions(GeneralFunctions generalFunctions) {
-		this.generalFunctions = generalFunctions;
 	}
 	
 
@@ -85,9 +80,9 @@ public class AcuteToxicityService {
 	private boolean componentHasAcutetox(MixtureComponent comp, String acuteTox1, String acuteTox2, String acuteTox3,
 			String acuteTox4) {
 
-		if (generalFunctions.componentHasHazard(comp, acuteTox1) || generalFunctions.componentHasHazard(comp, acuteTox2)
-				|| generalFunctions.componentHasHazard(comp, acuteTox3)
-				|| generalFunctions.componentHasHazard(comp, acuteTox4)) {
+		if (GeneralFunctions.componentHasHazard(comp, acuteTox1) || GeneralFunctions.componentHasHazard(comp, acuteTox2)
+				|| GeneralFunctions.componentHasHazard(comp, acuteTox3)
+				|| GeneralFunctions.componentHasHazard(comp, acuteTox4)) {
 			return true;
 		}
 
@@ -112,13 +107,13 @@ public class AcuteToxicityService {
 		String precautStatementCat4 = "P261, P271, P304+P340, P312";
 
 		if (ateMix > 0 && ateMix <= interval1) {
-			generalFunctions.addNewHazard(mixture, nameCat1, pictogramCat1Cat2Cat3, signalWordCat1Cat2Cat3, hazardStatementCat1Cat2, precautStatementCat1Cat2);
+			GeneralFunctions.addNewHazard(mixture, nameCat1, pictogramCat1Cat2Cat3, signalWordCat1Cat2Cat3, hazardStatementCat1Cat2, precautStatementCat1Cat2);
 		} else if (ateMix > interval1 && ateMix <= interval2) {
-			generalFunctions.addNewHazard(mixture, nameCat2, pictogramCat1Cat2Cat3, signalWordCat1Cat2Cat3, hazardStatementCat1Cat2, precautStatementCat4);
+			GeneralFunctions.addNewHazard(mixture, nameCat2, pictogramCat1Cat2Cat3, signalWordCat1Cat2Cat3, hazardStatementCat1Cat2, precautStatementCat4);
 		} else if (ateMix > interval2 && ateMix <= interval3) {
-			generalFunctions.addNewHazard(mixture, nameCat3, pictogramCat1Cat2Cat3, signalWordCat1Cat2Cat3, hazardStatementCat3, precautStatementCat3);
+			GeneralFunctions.addNewHazard(mixture, nameCat3, pictogramCat1Cat2Cat3, signalWordCat1Cat2Cat3, hazardStatementCat3, precautStatementCat3);
 		} else if (ateMix > interval3 && ateMix <= interval4) {
-			generalFunctions.addNewHazard(mixture, nameCat4, pictogramCat4, signalWordCat4, hazardStatementCat4, precautStatementCat4);
+			GeneralFunctions.addNewHazard(mixture, nameCat4, pictogramCat4, signalWordCat4, hazardStatementCat4, precautStatementCat4);
 		} 
 	}
 	
@@ -136,13 +131,13 @@ public class AcuteToxicityService {
 		String precautStatementCat4 = "P280, P302+P352, P312, P321, P362+P364, P405, P501";
 
 		if (ateMix > 0 && ateMix <= 50) {
-			generalFunctions.addNewHazard(mixture, nameCat1, pictogramCat1Cat2Cat3, signalWordCat1Cat2Cat3, hazardStatementCat1Cat2, precautStatementCat1Cat2);
+			GeneralFunctions.addNewHazard(mixture, nameCat1, pictogramCat1Cat2Cat3, signalWordCat1Cat2Cat3, hazardStatementCat1Cat2, precautStatementCat1Cat2);
 		} else if (ateMix > 50 && ateMix <= 200) {
-			generalFunctions.addNewHazard(mixture, nameCat2, pictogramCat1Cat2Cat3, signalWordCat1Cat2Cat3, hazardStatementCat1Cat2, precautStatementCat1Cat2);
+			GeneralFunctions.addNewHazard(mixture, nameCat2, pictogramCat1Cat2Cat3, signalWordCat1Cat2Cat3, hazardStatementCat1Cat2, precautStatementCat1Cat2);
 		} else if (ateMix > 200 && ateMix <= 1000) {
-			generalFunctions.addNewHazard(mixture, nameCat3, pictogramCat1Cat2Cat3, signalWordCat1Cat2Cat3, hazardStatementCat3, precautStatementCat3);
+			GeneralFunctions.addNewHazard(mixture, nameCat3, pictogramCat1Cat2Cat3, signalWordCat1Cat2Cat3, hazardStatementCat3, precautStatementCat3);
 		} else if (ateMix > 1000 && ateMix <= 2000) {
-			generalFunctions.addNewHazard(mixture, nameCat4, pictogramCat4, signalWordCat4, hazardStatementCat4, precautStatementCat4);
+			GeneralFunctions.addNewHazard(mixture, nameCat4, pictogramCat4, signalWordCat4, hazardStatementCat4, precautStatementCat4);
 		}
 	}
 	
@@ -158,13 +153,13 @@ public class AcuteToxicityService {
 		String precautStatementCat4 = "P264, P270, P301+P312, P330, P501";
 
 		if (ateMix > 0 && ateMix <= 5) {
-			generalFunctions.addNewHazard(mixture, nameCat1, pictogramCat1Cat2Cat3, signalWordCat1Cat2Cat3, hazardStatementCat1Cat2, precautStatementCat1Cat2Cat3);
+			GeneralFunctions.addNewHazard(mixture, nameCat1, pictogramCat1Cat2Cat3, signalWordCat1Cat2Cat3, hazardStatementCat1Cat2, precautStatementCat1Cat2Cat3);
 		} else if (ateMix > 5 && ateMix <= 50) {
-			generalFunctions.addNewHazard(mixture, nameCat2, pictogramCat1Cat2Cat3, signalWordCat1Cat2Cat3, hazardStatementCat1Cat2, precautStatementCat1Cat2Cat3);
+			GeneralFunctions.addNewHazard(mixture, nameCat2, pictogramCat1Cat2Cat3, signalWordCat1Cat2Cat3, hazardStatementCat1Cat2, precautStatementCat1Cat2Cat3);
 		} else if (ateMix > 50 && ateMix <= 300) {
-			generalFunctions.addNewHazard(mixture, nameCat3, pictogramCat1Cat2Cat3, signalWordCat1Cat2Cat3, hazardStatementCat3, precautStatementCat1Cat2Cat3);
+			GeneralFunctions.addNewHazard(mixture, nameCat3, pictogramCat1Cat2Cat3, signalWordCat1Cat2Cat3, hazardStatementCat3, precautStatementCat1Cat2Cat3);
 		} else if (ateMix > 300 && ateMix <= 2000) {
-			generalFunctions.addNewHazard(mixture, nameCat4, pictogramCat4, signalWordCat4, hazardStatementCat4, precautStatementCat4);
+			GeneralFunctions.addNewHazard(mixture, nameCat4, pictogramCat4, signalWordCat4, hazardStatementCat4, precautStatementCat4);
 		}
 	}
 	
@@ -228,7 +223,7 @@ public class AcuteToxicityService {
 		
 			if(comp.getConcentration() >= cutOff) {
 				if(comp.getHazards().contains(hazard)) {
-					sumOfRelevantConcentrations += generalFunctions.additiveHazardClassCalculation(comp, specificName, ate, cutOff);
+					sumOfRelevantConcentrations += GeneralFunctions.additiveHazardClassCalculation(comp, specificName, ate, cutOff);
 				}
 			}
 		return sumOfRelevantConcentrations;

@@ -1,6 +1,5 @@
 package com.classproject.classificationService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.classproject.domain.Mixture;
@@ -8,18 +7,6 @@ import com.classproject.domain.Mixture;
 @Service
 public class SkinSensService {
 	
-	private GeneralFunctions generalFunctions;
-		
-	@Autowired
-	public void setGeneralFunctions(GeneralFunctions generalFunctions) {
-		this.generalFunctions = generalFunctions;
-	}
-	
-
-	
-
-
-
 
 	private final String skinSens1 = "Skin. Sens. 1 (H317)";
 	private final String skinSens1A = "Skin. Sens. 1A (H317)";
@@ -45,10 +32,10 @@ public class SkinSensService {
 		addAllSkinSensHazards(mixture, 0.1, 1);
 	}
 	
-	protected void skinSensElicitacionAll(Mixture mixture) {
-//		CLP II. melleklet 2.8. kell meg!!
-		boolean euh208 = skinSensitisation(mixture, "hazard", 0.01, "elicitation");
-	}
+//	protected void skinSensElicitacionAll(Mixture mixture) {
+////		CLP II. melleklet 2.8. kell meg!!
+//		boolean euh208 = skinSensitisation(mixture, "hazard", 0.01, "elicitation");
+//	}
 	
 	
 	
@@ -68,17 +55,17 @@ public class SkinSensService {
 	
 	
 	private void addSkinSensHazards(Mixture mixture, String name) {
-		generalFunctions.addNewHazard(mixture, name, pictogramCatSkinSens11A1B, signalWordCatSkinSens11A1B,
+		GeneralFunctions.addNewHazard(mixture, name, pictogramCatSkinSens11A1B, signalWordCatSkinSens11A1B,
 				hazardStatementCatSkinSens11A1B, precautStatementCatSkinSens11A1B);
 	}
 	
 	
 	private boolean skinSensitisation(Mixture mixture, String hazard, double concLimit) {
-		return generalFunctions.nonAdditiveHazardClassCalculation(mixture, hazard, concLimit, "generic");
+		return GeneralFunctions.nonAdditiveHazardClassCalculation(mixture, hazard, concLimit, "generic");
 	}
 	
-	private boolean skinSensitisation(Mixture mixture, String hazard, double concLimit, String genericOrElicitation) {
-		return generalFunctions.nonAdditiveHazardClassCalculation(mixture, hazard, concLimit, genericOrElicitation);
-	}
+//	private boolean skinSensitisation(Mixture mixture, String hazard, double concLimit, String genericOrElicitation) {
+//		return GeneralFunctions.nonAdditiveHazardClassCalculation(mixture, hazard, concLimit, genericOrElicitation);
+//	}
 		
 }

@@ -1,6 +1,5 @@
 package com.classproject.classificationService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.classproject.domain.Mixture;
@@ -8,15 +7,6 @@ import com.classproject.domain.MixtureComponent;
 
 @Service
 public class ChronicAquaticToxicityService {
-	
-	private GeneralFunctions generalFunctions;
-		
-	@Autowired
-	public void setGeneralFunctions(GeneralFunctions generalFunctions) {
-		this.generalFunctions = generalFunctions;
-	}
-	
-	
 	
 
 
@@ -58,23 +48,23 @@ public class ChronicAquaticToxicityService {
 			aqChronic4 += aquaticChronic2and3and4Calculation(comp, aquaticChronic4);
 		}
 		if (aqChronic1 >= 25) {
-			generalFunctions.addNewHazard(mixture, nameCatAquaticChronic1, pictogramCatAquaticChronic1and2, 
+			GeneralFunctions.addNewHazard(mixture, nameCatAquaticChronic1, pictogramCatAquaticChronic1and2, 
 					signalWordCatAquaticChronic1, hazardStatementCatAquaticChronic1, precautStatementCatAquaticChronic1and2);
 		}else if((aqChronic1 * 10) + aqChronic2 >= 25) {
-			generalFunctions.addNewHazard(mixture, nameCatAquaticChronic2, pictogramCatAquaticChronic1and2, 
+			GeneralFunctions.addNewHazard(mixture, nameCatAquaticChronic2, pictogramCatAquaticChronic1and2, 
 					"", hazardStatementCatAquaticChronic2, precautStatementCatAquaticChronic1and2);
 		}else if(((aqChronic1 * 100) + (aqChronic2 * 10)) + aqChronic3 >= 25) {
-			generalFunctions.addNewHazard(mixture, nameCatAquaticChronic3, "", 
+			GeneralFunctions.addNewHazard(mixture, nameCatAquaticChronic3, "", 
 					"", hazardStatementCatAquaticChronic3, precautStatementCatAquaticChronic3and4);
 		}else if(aqChronic1 + aqChronic2 + aqChronic3 + aqChronic4 >= 25) {
-			generalFunctions.addNewHazard(mixture, nameCatAquaticChronic4, "", 
+			GeneralFunctions.addNewHazard(mixture, nameCatAquaticChronic4, "", 
 					"", hazardStatementCatAquaticChronic4, precautStatementCatAquaticChronic3and4);
 		}
 	}
 	
 	
 	private double aquaticChronic2and3and4Calculation(MixtureComponent comp, String hazard) {
-		if (generalFunctions.componentHasHazard(comp, hazard)) {
+		if (GeneralFunctions.componentHasHazard(comp, hazard)) {
 			if (comp.getConcentration() >= 1) {
 				return comp.getConcentration();
 			}
@@ -84,7 +74,7 @@ public class ChronicAquaticToxicityService {
 	
 	
 	private double aquaticChronic1Calculation(MixtureComponent comp) {
-		return generalFunctions.aquaticAcute1AndChronic1(comp, aquaticChronic1, "M-factor Aquatic Chronic");
+		return GeneralFunctions.aquaticAcute1AndChronic1(comp, aquaticChronic1, "M-factor Aquatic Chronic");
 	}
 	
 }

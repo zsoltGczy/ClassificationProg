@@ -1,6 +1,5 @@
 package com.classproject.classificationService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.classproject.domain.Mixture;
@@ -8,17 +7,7 @@ import com.classproject.domain.Mixture;
 @Service
 public class OzoneService {
 	
-	private GeneralFunctions generalFunctions;
-		
-	@Autowired
-	public void setGeneralFunctions(GeneralFunctions generalFunctions) {
-		this.generalFunctions = generalFunctions;
-	}
 	
-	
-	
-
-
 	private final String ozone1 = "Ozone 1 (H420)";
 	private final String nameCatOzone1 = "Ozone 1";
 	private final String pictogramCatOzone1 = "GHS07";
@@ -32,14 +21,14 @@ public class OzoneService {
 	
 	protected void ozone1 (Mixture mixture) {
 		if (ozone1Calculation(mixture)) {
-			generalFunctions.addNewHazard(mixture, nameCatOzone1, pictogramCatOzone1, signalWordCatOzone1, 
+			GeneralFunctions.addNewHazard(mixture, nameCatOzone1, pictogramCatOzone1, signalWordCatOzone1, 
 					hazardStatementCatOzone1, precautStatementCatOzone1);
 		}
 	}
 	
 	
 	private boolean ozone1Calculation (Mixture mixture) {
-		return generalFunctions.nonAdditiveHazardClassCalculation(mixture, ozone1, 0.1, "");
+		return GeneralFunctions.nonAdditiveHazardClassCalculation(mixture, ozone1, 0.1, "");
 	}
 	
 		

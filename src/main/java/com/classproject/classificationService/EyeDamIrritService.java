@@ -9,13 +9,8 @@ import com.classproject.domain.MixtureComponent;
 @Service
 public class EyeDamIrritService {
 	
-	private GeneralFunctions generalFunctions;
 	private SkinCorrIrritService skinCorrIrritService;
 		
-	@Autowired
-	public void setGeneralFunctions(GeneralFunctions generalFunctions) {
-		this.generalFunctions = generalFunctions;
-	}
 	@Autowired
 	public void setSkinCorrIrritService(SkinCorrIrritService skinCorrIrritService) {
 		this.skinCorrIrritService = skinCorrIrritService;
@@ -54,17 +49,17 @@ public class EyeDamIrritService {
 		double cateyeIrrit2 = calculateEyeIrrit(mixture);
 		Double pH = mixture.getpH();
 
-		if ((catEyeDamage1 >= 1 && generalFunctions.componentConcHigherThanSpecificConc(mixture, eyeDamage1))) {
+		if ((catEyeDamage1 >= 1 && GeneralFunctions.componentConcHigherThanSpecificConc(mixture, eyeDamage1))) {
 
-			generalFunctions.addNewHazard(mixture, nameCatEyeDam, pictogramCatEyeDam, signalWordCatEyeDam,
+			GeneralFunctions.addNewHazard(mixture, nameCatEyeDam, pictogramCatEyeDam, signalWordCatEyeDam,
 					hazardStatementCatEyeDam, precautStatementCatEyeDam);
 
 		} else if (pH != (null) && (pH <= 2 || pH >= 11.5)) {
-				generalFunctions.addNewHazard(mixture, nameCatEyeDam, pictogramCatEyeDam, signalWordCatEyeDam,
+				GeneralFunctions.addNewHazard(mixture, nameCatEyeDam, pictogramCatEyeDam, signalWordCatEyeDam,
 						hazardStatementCatEyeDam, precautStatementCatEyeDam);
-		} else if (cateyeIrrit2 >= 1 && generalFunctions.componentConcHigherThanSpecificConc(mixture, eyeIrrit2)) {
+		} else if (cateyeIrrit2 >= 1 && GeneralFunctions.componentConcHigherThanSpecificConc(mixture, eyeIrrit2)) {
 
-			generalFunctions.addNewHazard(mixture, nameCatEyeIrrit, pictogramCatEyeIrrit, signalWordCatEyeIrrit,
+			GeneralFunctions.addNewHazard(mixture, nameCatEyeIrrit, pictogramCatEyeIrrit, signalWordCatEyeIrrit,
 					hazardStatementCatEyeIrrit, precautStatementCatEyeIrrit);
 		}
 	}
@@ -90,8 +85,8 @@ public class EyeDamIrritService {
 	
 	private double calculationEyeIrrit(MixtureComponent comp, String hazard, double divisor) {
 		sumOfRelevantConcentrations = 0.0;
-		if(generalFunctions.componentHasHazard(comp, hazard))
-		sumOfRelevantConcentrations += generalFunctions.additiveHazardClassCalculation(comp, eyeIrrit2, divisor, skinCorrIrritService.cutOff);
+		if(GeneralFunctions.componentHasHazard(comp, hazard))
+		sumOfRelevantConcentrations += GeneralFunctions.additiveHazardClassCalculation(comp, eyeIrrit2, divisor, skinCorrIrritService.cutOff);
 		return sumOfRelevantConcentrations;
 	}
 
@@ -108,7 +103,7 @@ public class EyeDamIrritService {
 			sumOfRelevantConcentrations += calculationEyeDamWithSkinCorrHazards(comp, skinCorrIrritService.skinCorr1B);
 			sumOfRelevantConcentrations += calculationEyeDamWithSkinCorrHazards(comp, skinCorrIrritService.skinCorr1C);
 			sumOfRelevantConcentrations += calculationEyeDamWithSkinCorrHazards(comp, skinCorrIrritService.skinCorr1);
-			if (generalFunctions.componentHasHazard(comp, eyeDamage1)) {
+			if (GeneralFunctions.componentHasHazard(comp, eyeDamage1)) {
 				sumOfRelevantConcentrations += eyeDam(comp);
 			}
 		}
@@ -119,8 +114,8 @@ public class EyeDamIrritService {
 	
 	private double calculationEyeDamWithSkinCorrHazards(MixtureComponent comp, String skinCorrHazard) {
 		sumOfRelevantConcentrations = 0.0;
-		if (generalFunctions.componentHasHazard(comp, skinCorrHazard) 
-				&& !generalFunctions.componentHasHazard(comp, eyeDamage1)) {
+		if (GeneralFunctions.componentHasHazard(comp, skinCorrHazard) 
+				&& !GeneralFunctions.componentHasHazard(comp, eyeDamage1)) {
 			sumOfRelevantConcentrations += eyeDam(comp);
 		}
 		return sumOfRelevantConcentrations;
@@ -130,7 +125,7 @@ public class EyeDamIrritService {
 	
 	
 	private double eyeDam(MixtureComponent comp) {
-		return generalFunctions.additiveHazardClassCalculation(comp, eyeDamage1, 3, skinCorrIrritService.cutOff);
+		return GeneralFunctions.additiveHazardClassCalculation(comp, eyeDamage1, 3, skinCorrIrritService.cutOff);
 	}
 	
 }

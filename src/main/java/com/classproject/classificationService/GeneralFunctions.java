@@ -1,31 +1,17 @@
 package com.classproject.classificationService;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.classproject.domain.Mixture;
 import com.classproject.domain.MixtureComponent;
 import com.classproject.domain.MixtureHazard;
 import com.classproject.domain.SpecificConcLimit;
-import com.classproject.domain.Mixture;
-import com.classproject.service.MixtureComponentService;
 
 @Service
 public class GeneralFunctions {
-
-	private MixtureComponentService componentService;
-	
-	@Autowired
-	public void setComponentService(MixtureComponentService componentService) {
-		this.componentService = componentService;
-	}
-	
-	
-	
 	
 
-	protected double aquaticAcute1AndChronic1(MixtureComponent comp, String hazard, String specificName) {
+	protected static double aquaticAcute1AndChronic1(MixtureComponent comp, String hazard, String specificName) {
 		if (componentHasHazard(comp, hazard)) {
 			if (!comp.getSpecificConcLimits().isEmpty()) {
 				for (SpecificConcLimit spec : comp.getSpecificConcLimits()) {
@@ -43,7 +29,7 @@ public class GeneralFunctions {
 	
 	
 	
-	protected double additiveHazardClassCalculation(MixtureComponent comp, String specificName,
+	protected static double additiveHazardClassCalculation(MixtureComponent comp, String specificName,
 			double divisor, double cutOff) {
 
 		double sumOfRelevantConcentrations = 0.0;
@@ -67,7 +53,7 @@ public class GeneralFunctions {
 	
 	
 	
-	protected boolean specialCase(Mixture mixture, String hazard, String specificName) {
+	protected static boolean specialCase(Mixture mixture, String hazard, String specificName) {
 
 		for (MixtureComponent comp : mixture.getMixtureComponents()) {
 			if (comp.getHazards().contains(hazard)) {
@@ -81,7 +67,7 @@ public class GeneralFunctions {
 	
 	
 	
-	protected boolean nonAdditiveHazardClassCalculation(Mixture mixture, String hazard, double concLimit,
+	protected static boolean nonAdditiveHazardClassCalculation(Mixture mixture, String hazard, double concLimit,
 			String genericOrElicitation) {
 
 		int trueCaseCounter = 0;
@@ -116,7 +102,7 @@ public class GeneralFunctions {
 	
 	
 	
-	protected boolean componentConcHigherThanSpecificConc(Mixture mixture, String specificConcName) {
+	protected static boolean componentConcHigherThanSpecificConc(Mixture mixture, String specificConcName) {
 
 		for (MixtureComponent comp : mixture.getMixtureComponents()) {
 			componentConcHigherThanSpecificConc(comp, specificConcName, true);
@@ -126,7 +112,7 @@ public class GeneralFunctions {
 	
 	
 	
-	protected boolean componentConcHigherThanSpecificConc(MixtureComponent component, String specificConcName, boolean elseValue) {
+	protected static boolean componentConcHigherThanSpecificConc(MixtureComponent component, String specificConcName, boolean elseValue) {
 
 		if (!component.getSpecificConcLimits().isEmpty()) {
 			for (SpecificConcLimit spec : component.getSpecificConcLimits()) {
@@ -139,7 +125,7 @@ public class GeneralFunctions {
 	}
 
 	
-	protected boolean componentHasHazard(MixtureComponent comp, String hazard) {
+	protected static boolean componentHasHazard(MixtureComponent comp, String hazard) {
 		if (comp.getHazards().contains(hazard))
 			return true;
 		return false;
@@ -147,13 +133,7 @@ public class GeneralFunctions {
 
 	
 	
-	protected List<MixtureComponent> componentsOfSpecificMixture(Mixture mixture) {
-		return componentService.getMixComponents(mixture);
-	}
-	
-	
-	
-	protected void addNewHazard(Mixture mixture, String name, String pictogram, String signalWord,
+	protected static void addNewHazard(Mixture mixture, String name, String pictogram, String signalWord,
 			String hazardStatement, String precautStatement) {
 
 		mixture.getHazardsOfMixture()

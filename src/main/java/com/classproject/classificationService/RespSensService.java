@@ -1,6 +1,5 @@
 package com.classproject.classificationService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.classproject.domain.Mixture;
@@ -8,16 +7,6 @@ import com.classproject.domain.Mixture;
 @Service
 public class RespSensService {
 	
-	private GeneralFunctions generalFunctions;
-		
-	@Autowired
-	public void setGeneralFunctions(GeneralFunctions generalFunctions) {
-		this.generalFunctions = generalFunctions;
-	}
-	
-	
-
-
 	private final String respSens1 = "Resp. Sens. 1 (H334)";
 	private final String respSens1A = "Resp. Sens. 1A (H334)";
 	private final String respSens1B = "Resp. Sens. 1B (H334)";
@@ -47,10 +36,10 @@ public class RespSensService {
 		}
 	}
 	
-	protected void respSensElicitacionAll(Mixture mixture) {
-//		CLP II. melleklet 2.8. kell meg!!
-		boolean euh208 = respSensitisation(mixture, "hazard", 0.01, "elicitation");
-	}
+//	protected void respSensElicitacionAll(Mixture mixture) {
+////		CLP II. melleklet 2.8. kell meg!!
+//		boolean euh208 = respSensitisation(mixture, "hazard", 0.01, "elicitation");
+//	}
 	
 	
 	
@@ -69,7 +58,7 @@ public class RespSensService {
 	}
 	
 	private void addRespSensHazards(Mixture mixture, String name) {
-		generalFunctions.addNewHazard(mixture, name, pictogramCatRespSens11A1B, signalWordCatRespSens11A1B,
+		GeneralFunctions.addNewHazard(mixture, name, pictogramCatRespSens11A1B, signalWordCatRespSens11A1B,
 				hazardStatementCatRespSens11A1B, precautStatementCatRespSens11A1B);
 	}
 	
@@ -80,7 +69,7 @@ public class RespSensService {
 	
 	
 	protected boolean respSensitisation(Mixture mixture, String hazard, double concLimit, String genericOrElicitation) {
-		return generalFunctions.nonAdditiveHazardClassCalculation(mixture, hazard, concLimit, genericOrElicitation);
+		return GeneralFunctions.nonAdditiveHazardClassCalculation(mixture, hazard, concLimit, genericOrElicitation);
 	}
 		
 }

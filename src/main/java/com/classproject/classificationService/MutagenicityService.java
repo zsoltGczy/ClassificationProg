@@ -1,6 +1,5 @@
 package com.classproject.classificationService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.classproject.domain.Mixture;
@@ -8,16 +7,6 @@ import com.classproject.domain.Mixture;
 @Service
 public class MutagenicityService {
 	
-	private GeneralFunctions generalFunctions;
-		
-	@Autowired
-	public void setGeneralFunctions(GeneralFunctions generalFunctions) {
-		this.generalFunctions = generalFunctions;
-	}
-	
-	
-	
-
 
 	private final String mutagenicity1A = "Muta. 1A (H340)";
 	private final String mutagenicity1B = "Muta. 1B (H340)";
@@ -66,19 +55,19 @@ public class MutagenicityService {
 	
 	
 	private void addMutagenicityHazards2(Mixture mixture) {
-		generalFunctions.addNewHazard(mixture, nameCatMutagenicity2, pictogramCatMutagenicity1A1B2, signalWordCatMutagenicity2,
+		GeneralFunctions.addNewHazard(mixture, nameCatMutagenicity2, pictogramCatMutagenicity1A1B2, signalWordCatMutagenicity2,
 				hazardStatementCatMutagenicity2, precautStatementCatMutagenicity1A1B2);
 	}
 	
 	
 	private void addMutagenicityHazards1A1B(Mixture mixture, String name) {
-		generalFunctions.addNewHazard(mixture, name, pictogramCatMutagenicity1A1B2, signalWordCatMutagenicity1A1B,
+		GeneralFunctions.addNewHazard(mixture, name, pictogramCatMutagenicity1A1B2, signalWordCatMutagenicity1A1B,
 				hazardStatementCatMutagenicity1A1B, precautStatementCatMutagenicity1A1B2);
 	}
 	
 	
 	private boolean mutagenicity(Mixture mixture, String hazard, double concLimit) {
-		return generalFunctions.nonAdditiveHazardClassCalculation(mixture, hazard, concLimit, "");
+		return GeneralFunctions.nonAdditiveHazardClassCalculation(mixture, hazard, concLimit, "");
 	}
 	
 		

@@ -1,6 +1,5 @@
 package com.classproject.classificationService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.classproject.domain.Mixture;
@@ -8,17 +7,7 @@ import com.classproject.domain.Mixture;
 @Service
 public class StotREService {
 	
-	private GeneralFunctions generalFunctions;
-		
-	@Autowired
-	public void setGeneralFunctions(GeneralFunctions generalFunctions) {
-		this.generalFunctions = generalFunctions;
-	}
 	
-	
-	
-
-
 	private final String stotRE1 = "STOT RE 1 (H372)";
 	private final String stotRE2 = "STOT RE 2 (H373)";
 	
@@ -51,7 +40,7 @@ public class StotREService {
 		
 		if(stotRE1and2(mixture, stotRE1, 10)) {
 			addStotREHazard1(mixture);
-		} else if (generalFunctions.specialCase(mixture, stotRE1, stotRE2) || stotRE1and2(mixture, stotRE1, 1)
+		} else if (GeneralFunctions.specialCase(mixture, stotRE1, stotRE2) || stotRE1and2(mixture, stotRE1, 1)
 				|| stotRE1and2(mixture, stotRE2, 10)) {
 			addStotREHazard2(mixture);
 		}
@@ -61,12 +50,12 @@ public class StotREService {
 	
 	
 	private void addStotREHazard2(Mixture mixture) {
-		generalFunctions.addNewHazard(mixture, nameCatStotRE2, pictogramCatStotRE1and2, signalWordCatStotRE2,
+		GeneralFunctions.addNewHazard(mixture, nameCatStotRE2, pictogramCatStotRE1and2, signalWordCatStotRE2,
 				hazardStatementCatStotRE2, precautStatementCatStotRE2);
 	}
 	
 	private void addStotREHazard1(Mixture mixture) {
-		generalFunctions.addNewHazard(mixture, nameCatStotRE1, pictogramCatStotRE1and2, signalWordCatStotRE1,
+		GeneralFunctions.addNewHazard(mixture, nameCatStotRE1, pictogramCatStotRE1and2, signalWordCatStotRE1,
 				hazardStatementCatStotRE1, precautStatementCatStotRE1);
 	}
 	
@@ -74,7 +63,7 @@ public class StotREService {
 	
 	
 	private boolean stotRE1and2(Mixture mixture, String hazard, double concLimit) {
-		return generalFunctions.nonAdditiveHazardClassCalculation(mixture, hazard, concLimit, "");
+		return GeneralFunctions.nonAdditiveHazardClassCalculation(mixture, hazard, concLimit, "");
 	}
 	
 		

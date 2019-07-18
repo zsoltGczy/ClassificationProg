@@ -1,6 +1,5 @@
 package com.classproject.classificationService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.classproject.domain.Mixture;
@@ -8,14 +7,6 @@ import com.classproject.domain.MixtureComponent;
 
 @Service
 public class AcuteAquaticToxicityService {
-	
-	private GeneralFunctions generalFunctions;
-		
-	@Autowired
-	public void setGeneralFunctions(GeneralFunctions generalFunctions) {
-		this.generalFunctions = generalFunctions;
-	}
-	
 	
 	
 
@@ -33,14 +24,14 @@ public class AcuteAquaticToxicityService {
 			aqAcute1 += aquaticAcuteCalculation(comp);
 		}
 		if (aqAcute1 >= 25) {
-			generalFunctions.addNewHazard(mixture, nameCatAquaticAcute1, pictogramCatAquaticAcute1,
+			GeneralFunctions.addNewHazard(mixture, nameCatAquaticAcute1, pictogramCatAquaticAcute1,
 					signalWordCatAquaticAcute1, hazardStatementCatAquaticAcute1, precautStatementCatAquaticAcute1);
 		}
 	}
 	
 	
 	private double aquaticAcuteCalculation(MixtureComponent comp) {
-		return generalFunctions.aquaticAcute1AndChronic1(comp, aquaticAcute1, "M-factor Aquatic Acute");
+		return GeneralFunctions.aquaticAcute1AndChronic1(comp, aquaticAcute1, "M-factor Aquatic Acute");
 	}
 	
 		

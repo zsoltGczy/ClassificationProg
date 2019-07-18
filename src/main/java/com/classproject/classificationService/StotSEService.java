@@ -1,6 +1,5 @@
 package com.classproject.classificationService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.classproject.domain.Mixture;
@@ -9,17 +8,6 @@ import com.classproject.domain.MixtureComponent;
 @Service
 public class StotSEService {
 	
-	private GeneralFunctions generalFunctions;
-		
-	@Autowired
-	public void setGeneralFunctions(GeneralFunctions generalFunctions) {
-		this.generalFunctions = generalFunctions;
-	}
-	
-	
-	
-
-
 	private final String stotSE1 = "STOT SE 1 (H370)";
 	private final String stotSE2 = "STOT SE 2 (H371)";
 	private final String stotSE335 = "STOT SE 3 (H335)";
@@ -58,7 +46,7 @@ public class StotSEService {
 
 		if (stotSE1and2(mixture, stotSE1, 10)) {
 			addStotSEHazard1(mixture);
-		} else if (generalFunctions.specialCase(mixture, stotSE1, stotSE2) || stotSE1and2(mixture, stotSE1, 1)
+		} else if (GeneralFunctions.specialCase(mixture, stotSE1, stotSE2) || stotSE1and2(mixture, stotSE1, 1)
 				|| stotSE1and2(mixture, stotSE2, 10)) {
 			addStotSEHazard2(mixture);
 		} else {
@@ -75,18 +63,18 @@ public class StotSEService {
 	
 	
 	private void addStotSEHazards3(Mixture mixture, String hazardStatement) {
-		generalFunctions.addNewHazard(mixture, nameCatStotSE335and336, pictogramCatStotSE335and336, signalWordCatStotSE2and335and336,
+		GeneralFunctions.addNewHazard(mixture, nameCatStotSE335and336, pictogramCatStotSE335and336, signalWordCatStotSE2and335and336,
 				hazardStatement, precautStatementCatStotSE335and336);
 	}
 	
 	private void addStotSEHazard2(Mixture mixture) {
-		generalFunctions.addNewHazard(mixture, nameCatStotSE2, pictogramCatStotSE1and2, signalWordCatStotSE2and335and336,
+		GeneralFunctions.addNewHazard(mixture, nameCatStotSE2, pictogramCatStotSE1and2, signalWordCatStotSE2and335and336,
 				hazardStatementCatStotSE2, precautStatementCatStotSE2);
 	}
 	
 	
 	private void addStotSEHazard1(Mixture mixture) {
-		generalFunctions.addNewHazard(mixture, nameCatStotSE1, pictogramCatStotSE1and2, signalWordCatStotSE1,
+		GeneralFunctions.addNewHazard(mixture, nameCatStotSE1, pictogramCatStotSE1and2, signalWordCatStotSE1,
 				hazardStatementCatStotSE1, precautStatementCatStotSE1);
 	}
 	
@@ -97,10 +85,10 @@ public class StotSEService {
 		double sum = 0.0;
 		for(MixtureComponent comp : mixture.getMixtureComponents()) {
 			
-			if(generalFunctions.componentHasHazard(comp, hazard))
-			sum += generalFunctions.additiveHazardClassCalculation(comp, hazard, 20, 0.0);
+			if(GeneralFunctions.componentHasHazard(comp, hazard))
+			sum += GeneralFunctions.additiveHazardClassCalculation(comp, hazard, 20, 0.0);
 			
-			if(generalFunctions.componentConcHigherThanSpecificConc(comp, hazard, false)) return true;
+			if(GeneralFunctions.componentConcHigherThanSpecificConc(comp, hazard, false)) return true;
 		}
 		if(sum >= 1.0) return true;
 		return false;
@@ -108,7 +96,7 @@ public class StotSEService {
 	
 	
 	private boolean stotSE1and2(Mixture mixture, String hazard, double concLimit) {
-		return generalFunctions.nonAdditiveHazardClassCalculation(mixture, hazard, concLimit, "");
+		return GeneralFunctions.nonAdditiveHazardClassCalculation(mixture, hazard, concLimit, "");
 	}
 	
 		
