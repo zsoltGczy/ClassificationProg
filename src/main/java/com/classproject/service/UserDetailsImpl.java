@@ -7,6 +7,7 @@ import java.util.Set;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -38,7 +39,7 @@ public class UserDetailsImpl implements UserDetails {
 
 	@Override
 	public String getPassword() {
-		PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder(); 
+		PasswordEncoder encoder = new BCryptPasswordEncoder(); 
         return encoder.encode(this.user.getPassword());
 	}
 
