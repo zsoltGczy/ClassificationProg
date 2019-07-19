@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.classproject.repository.RoleRepository;
@@ -21,14 +22,17 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
 	private UserRepository userRepo;
 	private RoleRepository roleRepo;
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
 	
 	private EmailService emailService;
 	
 	
 	@Autowired
-	public UserServiceImpl(UserRepository userRepo, RoleRepository roleRepo) {
+	public UserServiceImpl(UserRepository userRepo, RoleRepository roleRepo, BCryptPasswordEncoder bCryptPasswordEncoder) {
 		this.userRepo = userRepo;
 		this.roleRepo = roleRepo;
+		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 	}
 	
 	@Autowired
@@ -80,6 +84,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 		if(!userToRegister.getPassword().equals(userToRegister.getPasswordCheck())) {
 			return "passWordCheckIsFalse";
 		}
+		userToRegister.setPassword(bCryptPasswordEncoder.encode(userToRegister.getPassword()));
 		
 		userRepo.save(userToRegister);
 		emailService.sendMessage(userToRegister, randomKey);
