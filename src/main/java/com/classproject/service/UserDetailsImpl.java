@@ -7,9 +7,6 @@ import java.util.Set;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.classproject.usersandroles.Role;
 import com.classproject.usersandroles.User;
@@ -25,8 +22,6 @@ public class UserDetailsImpl implements UserDetails {
 		this.user = user;
 	}
 	
-	
-	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		Collection<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
@@ -37,10 +32,11 @@ public class UserDetailsImpl implements UserDetails {
 		return authorities;
 	}
 
+	
+
 	@Override
 	public String getPassword() {
-		PasswordEncoder encoder = new BCryptPasswordEncoder(); 
-        return encoder.encode(this.user.getPassword());
+		return this.user.getPassword();
 	}
 
 	@Override

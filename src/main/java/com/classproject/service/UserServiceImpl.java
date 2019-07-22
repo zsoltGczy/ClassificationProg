@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.classproject.repository.RoleRepository;
@@ -22,14 +22,14 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
 	private UserRepository userRepo;
 	private RoleRepository roleRepo;
-	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	private PasswordEncoder bCryptPasswordEncoder;
 	
 	
 	private EmailService emailService;
 	
 	
 	@Autowired
-	public UserServiceImpl(UserRepository userRepo, RoleRepository roleRepo, BCryptPasswordEncoder bCryptPasswordEncoder) {
+	public UserServiceImpl(UserRepository userRepo, RoleRepository roleRepo, PasswordEncoder bCryptPasswordEncoder) {
 		this.userRepo = userRepo;
 		this.roleRepo = roleRepo;
 		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
@@ -84,7 +84,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 		if(!userToRegister.getPassword().equals(userToRegister.getPasswordCheck())) {
 			return "passWordCheckIsFalse";
 		}
+		
 		userToRegister.setPassword(bCryptPasswordEncoder.encode(userToRegister.getPassword()));
+		userToRegister.setPasswordCheck(bCryptPasswordEncoder.encode(userToRegister.getPasswordCheck()));
 		
 		userRepo.save(userToRegister);
 		emailService.sendMessage(userToRegister, randomKey);
