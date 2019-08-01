@@ -32,6 +32,12 @@ public class SpecificConcLimit {
 		this.mixtureComponent = mixtureComponent;
 	}
 	
+	public SpecificConcLimit(String name, Double value) {
+		
+		this.name = name;
+		this.value = value;
+	}
+	
 	
 	
 	public Long getSpecId() {

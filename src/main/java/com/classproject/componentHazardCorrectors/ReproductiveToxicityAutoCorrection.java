@@ -8,12 +8,12 @@ import com.classproject.domain.MixtureComponent;
 @Component
 public class ReproductiveToxicityAutoCorrection {
 	
-	private final String reproductiveToxicity1A = "Repr. 1A (H360)";
-	private final String reproductiveToxicity1B = "Repr. 1B (H360)";
-	private final String reproductiveToxicity2 = "Repr. 2 (H361)";
+	private static final String reproductiveToxicity1A = "Repr. 1A (H360)";
+	private static final String reproductiveToxicity1B = "Repr. 1B (H360)";
+	private static final String reproductiveToxicity2 = "Repr. 2 (H361)";
 	
 
-	protected void correctReproductiveToxicity(MixtureComponent component) {
+	protected static void correctReproductiveToxicity(MixtureComponent component) {
 		
 		List <String> list = component.getHazards();
 		

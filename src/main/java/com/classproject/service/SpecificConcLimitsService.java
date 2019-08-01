@@ -38,7 +38,6 @@ public class SpecificConcLimitsService {
 	
 		
 	public void specificConcLimitSaveOrUpdate(SpecificConcLimit spec) {
-
 		specRepo.save(spec);
 	}
 	
@@ -48,5 +47,4 @@ public class SpecificConcLimitsService {
 		comp.getSpecificConcLimits().remove(spec);
 		specRepo.delete(spec);
 	}
-	
 }

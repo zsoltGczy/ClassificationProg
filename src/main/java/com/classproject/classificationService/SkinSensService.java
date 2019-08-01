@@ -32,11 +32,6 @@ public class SkinSensService {
 		addAllSkinSensHazards(mixture, 0.1, 1);
 	}
 	
-//	protected void skinSensElicitacionAll(Mixture mixture) {
-////		CLP II. melleklet 2.8. kell meg!!
-//		boolean euh208 = skinSensitisation(mixture, "hazard", 0.01, "elicitation");
-//	}
-	
 	
 	
 	
@@ -62,10 +57,5 @@ public class SkinSensService {
 	
 	private boolean skinSensitisation(Mixture mixture, String hazard, double concLimit) {
 		return GeneralFunctions.nonAdditiveHazardClassCalculation(mixture, hazard, concLimit, "generic");
-	}
-	
-//	private boolean skinSensitisation(Mixture mixture, String hazard, double concLimit, String genericOrElicitation) {
-//		return GeneralFunctions.nonAdditiveHazardClassCalculation(mixture, hazard, concLimit, genericOrElicitation);
-//	}
-		
+	}	
 }

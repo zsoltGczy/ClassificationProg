@@ -8,12 +8,12 @@ import com.classproject.domain.MixtureComponent;
 @Component
 public class MutagenicityAutoCorrection {
 	
-	private final String mutagenicity1A = "Muta. 1A (H340)";
-	private final String mutagenicity1B = "Muta. 1B (H340)";
-	private final String mutagenicity2 = "Muta. 2 (H341)";
+	private static final String mutagenicity1A = "Muta. 1A (H340)";
+	private static final String mutagenicity1B = "Muta. 1B (H340)";
+	private static final String mutagenicity2 = "Muta. 2 (H341)";
 	
 
-	protected void correctMutagenicity(MixtureComponent component) {
+	protected static void correctMutagenicity(MixtureComponent component) {
 		
 		List <String> list = component.getHazards();
 		

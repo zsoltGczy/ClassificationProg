@@ -17,6 +17,9 @@ public class GeneralFunctions {
 				for (SpecificConcLimit spec : comp.getSpecificConcLimits()) {
 					if (spec.getName().equals(specificName)) {
 						return (comp.getConcentration() * (spec.getValue() == null ? 1 : spec.getValue()));
+					}else {
+						if(comp.getConcentration() >= 0.1)
+							return comp.getConcentration();
 					}
 				}
 			} else if (comp.getConcentration() >= 0.1) {

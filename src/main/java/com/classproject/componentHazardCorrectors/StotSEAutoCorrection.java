@@ -8,13 +8,13 @@ import com.classproject.domain.MixtureComponent;
 @Component
 public class StotSEAutoCorrection {
 	
-	private final String stotSE1 = "STOT SE 1 (H370)";
-	private final String stotSE2 = "STOT SE 2 (H371)";
-	private final String stotSE335 = "STOT SE 3 (H335)";
-	private final String stotSE336 = "STOT SE 3 (H336)";
+	private static final String stotSE1 = "STOT SE 1 (H370)";
+	private static final String stotSE2 = "STOT SE 2 (H371)";
+	private static final String stotSE335 = "STOT SE 3 (H335)";
+	private static final String stotSE336 = "STOT SE 3 (H336)";
 	
 
-	protected void correctStotSE(MixtureComponent component) {
+	protected static void correctStotSE(MixtureComponent component) {
 		
 		List <String> list = component.getHazards();
 		

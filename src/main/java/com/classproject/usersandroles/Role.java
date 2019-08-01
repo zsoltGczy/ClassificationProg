@@ -22,6 +22,7 @@ public class Role {
 	
 	
 	
+	@SuppressWarnings("unused")
 	private Role() {}
 	
 	public Role(String role) {

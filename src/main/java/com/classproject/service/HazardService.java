@@ -19,6 +19,7 @@ public class HazardService {
 	}
 
 
+	
 	public MixtureHazard findHazard(Long id) {
 		return hazardRepo.findById(id).get();
 	}

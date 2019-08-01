@@ -8,12 +8,12 @@ import com.classproject.domain.MixtureComponent;
 @Component
 public class RespSensAutoCorrection {
 	
-	private final String respSens1 = "Resp. Sens. 1 (H334)";
-	private final String respSens1A = "Resp. Sens. 1A (H334)";
-	private final String respSens1B = "Resp. Sens. 1B (H334)";
+	private static final String respSens1 = "Resp. Sens. 1 (H334)";
+	private static final String respSens1A = "Resp. Sens. 1A (H334)";
+	private static final String respSens1B = "Resp. Sens. 1B (H334)";
 	
 
-	protected void correctRespSens(MixtureComponent component) {
+	protected static void correctRespSens(MixtureComponent component) {
 		
 		List <String> list = component.getHazards();
 		

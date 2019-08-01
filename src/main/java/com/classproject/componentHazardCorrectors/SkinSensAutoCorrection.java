@@ -8,12 +8,12 @@ import com.classproject.domain.MixtureComponent;
 @Component
 public class SkinSensAutoCorrection {
 	
-	private final String skinSens1 = "Skin. Sens. 1 (H317)";
-	private final String skinSens1A = "Skin. Sens. 1A (H317)";
-	private final String skinSens1B = "Skin. Sens. 1B (H317)";
+	private static final String skinSens1 = "Skin. Sens. 1 (H317)";
+	private static final String skinSens1A = "Skin. Sens. 1A (H317)";
+	private static final String skinSens1B = "Skin. Sens. 1B (H317)";
 	
 
-	protected void correctSkinSens(MixtureComponent component) {
+	protected static void correctSkinSens(MixtureComponent component) {
 		
 		List <String> list = component.getHazards();
 		

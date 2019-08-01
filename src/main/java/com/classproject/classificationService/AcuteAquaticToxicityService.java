@@ -8,8 +8,6 @@ import com.classproject.domain.MixtureComponent;
 @Service
 public class AcuteAquaticToxicityService {
 	
-	
-
 
 	private final String aquaticAcute1 = "Aquatic Acute 1 (H400)";
 	private final String nameCatAquaticAcute1 = "Aquatic Acute 1";
@@ -18,7 +16,7 @@ public class AcuteAquaticToxicityService {
 	private final String hazardStatementCatAquaticAcute1 = "H400: Very toxic to aquatic life";
 	private final String precautStatementCatAquaticAcute1 = "P273, P391, P501";
 	
-	protected void aquaticAcute1 (Mixture mixture) {
+	protected void aquaticAcute1(Mixture mixture) {
 		double aqAcute1 = 0.0;
 		for (MixtureComponent comp : mixture.getMixtureComponents()) {
 			aqAcute1 += aquaticAcuteCalculation(comp);

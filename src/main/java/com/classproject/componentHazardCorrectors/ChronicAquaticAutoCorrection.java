@@ -8,13 +8,13 @@ import com.classproject.domain.MixtureComponent;
 @Component
 public class ChronicAquaticAutoCorrection {
 	
-	private final String aquaticChronic1 = "Aquatic Chronic 1 (H410)";
-	private final String aquaticChronic2 = "Aquatic Chronic 2 (H411)";
-	private final String aquaticChronic3 = "Aquatic Chronic 3 (H412)";
-	private final String aquaticChronic4 = "Aquatic Chronic 4 (H413)";
+	private static final String aquaticChronic1 = "Aquatic Chronic 1 (H410)";
+	private static final String aquaticChronic2 = "Aquatic Chronic 2 (H411)";
+	private static final String aquaticChronic3 = "Aquatic Chronic 3 (H412)";
+	private static final String aquaticChronic4 = "Aquatic Chronic 4 (H413)";
 	
 	
-	protected void correctSkinCorrIrritComponentHazards(MixtureComponent component) {
+	protected static void correctChronicAquaticComponentHazards(MixtureComponent component) {
 		
 		List <String> list = component.getHazards();
 		

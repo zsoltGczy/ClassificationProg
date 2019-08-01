@@ -8,14 +8,14 @@ import com.classproject.domain.MixtureComponent;
 @Component
 public class SkinCorrIrritAutoCorrection {
 	
-	private final String skinCorr1A = "Skin Corr. 1A (H314)";
-	private final String skinCorr1B = "Skin Corr. 1B (H314)";
-	private final String skinCorr1C = "Skin Corr. 1C (H314)";
-	private final String skinCorr1 = "Skin Corr. 1 (H314)";
-	private final String skinIrrit = "Skin Irrit. 2 (H315)";
+	private static final String skinCorr1A = "Skin Corr. 1A (H314)";
+	private static final String skinCorr1B = "Skin Corr. 1B (H314)";
+	private static final String skinCorr1C = "Skin Corr. 1C (H314)";
+	private static final String skinCorr1 = "Skin Corr. 1 (H314)";
+	private static final String skinIrrit = "Skin Irrit. 2 (H315)";
 	
 	
-	protected void correctSkinCorrIrritComponentHazards(MixtureComponent component) {
+	protected static void correctSkinCorrIrritComponentHazards(MixtureComponent component) {
 		
 		List <String> list = component.getHazards();
 		

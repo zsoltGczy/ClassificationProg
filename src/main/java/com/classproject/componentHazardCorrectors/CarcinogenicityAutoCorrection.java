@@ -8,12 +8,12 @@ import com.classproject.domain.MixtureComponent;
 @Component
 public class CarcinogenicityAutoCorrection {
 	
-	private final String carcinogenicity1A = "Carc. 1A (H350)";
-	private final String carcinogenicity1B = "Carc. 1B (H350)";
-	private final String carcinogenicity2 = "Carc. 2 (H351)";
+	private static final String carcinogenicity1A = "Carc. 1A (H350)";
+	private static final String carcinogenicity1B = "Carc. 1B (H350)";
+	private static final String carcinogenicity2 = "Carc. 2 (H351)";
 	
 
-	protected void correctCarcinogenicity(MixtureComponent component) {
+	protected static void correctCarcinogenicity(MixtureComponent component) {
 		
 		List <String> list = component.getHazards();
 		

@@ -8,10 +8,10 @@ import com.classproject.domain.MixtureComponent;
 @Component
 public class EyeDamageIrritAutoCorrection {
 	
-	private final String eyeDamage1 = "Eye Dam. 1 (H318)";
-	private final String eyeIrrit2 = "Eye Irrit. 2 (H319)";
+	private static final String eyeDamage1 = "Eye Dam. 1 (H318)";
+	private static final String eyeIrrit2 = "Eye Irrit. 2 (H319)";
 	
-	protected void correctEyeDamageIrritComponentHazards(MixtureComponent component) {
+	protected static void correctEyeDamageIrritComponentHazards(MixtureComponent component) {
 
 		List<String> list = component.getHazards();
 

@@ -36,12 +36,6 @@ public class RespSensService {
 		}
 	}
 	
-//	protected void respSensElicitacionAll(Mixture mixture) {
-////		CLP II. melleklet 2.8. kell meg!!
-//		boolean euh208 = respSensitisation(mixture, "hazard", 0.01, "elicitation");
-//	}
-	
-	
 	
 	
 	private void addAllRespSensHazards(Mixture mixture, double concLimit1A, double concLimit) {
@@ -70,6 +64,5 @@ public class RespSensService {
 	
 	protected boolean respSensitisation(Mixture mixture, String hazard, double concLimit, String genericOrElicitation) {
 		return GeneralFunctions.nonAdditiveHazardClassCalculation(mixture, hazard, concLimit, genericOrElicitation);
-	}
-		
+	}		
 }

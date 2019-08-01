@@ -64,7 +64,5 @@ public class StotREService {
 	
 	private boolean stotRE1and2(Mixture mixture, String hazard, double concLimit) {
 		return GeneralFunctions.nonAdditiveHazardClassCalculation(mixture, hazard, concLimit, "");
-	}
-	
-		
+	}		
 }

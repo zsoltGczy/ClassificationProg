@@ -33,7 +33,7 @@ public class AcuteToxicityService {
 	
 	
 	
-	public void acuteTox(Mixture mixture) {
+	protected void acuteTox(Mixture mixture) {
 		
 		boolean acuteToxOral = false;
 		boolean acuteToxDermal = false;
@@ -85,7 +85,6 @@ public class AcuteToxicityService {
 				|| GeneralFunctions.componentHasHazard(comp, acuteTox4)) {
 			return true;
 		}
-
 		return false;
 	}
 	

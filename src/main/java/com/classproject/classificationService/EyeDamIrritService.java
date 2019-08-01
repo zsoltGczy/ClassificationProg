@@ -66,7 +66,7 @@ public class EyeDamIrritService {
 	
 	
 	
-	private double calculateEyeIrrit(Mixture mixture) {
+	protected double calculateEyeIrrit(Mixture mixture) {
 		
 		sumOfRelevantConcentrations = 0.0;
 		
@@ -79,7 +79,6 @@ public class EyeDamIrritService {
 			sumOfRelevantConcentrations += calculationEyeIrrit(comp, eyeDamage1, 1);
 			sumOfRelevantConcentrations += calculationEyeIrrit(comp, eyeIrrit2, 10);
 		}
-		
 		return sumOfRelevantConcentrations;
 	}
 	
@@ -107,7 +106,6 @@ public class EyeDamIrritService {
 				sumOfRelevantConcentrations += eyeDam(comp);
 			}
 		}
-		
 		return sumOfRelevantConcentrations;
 	}
 	
